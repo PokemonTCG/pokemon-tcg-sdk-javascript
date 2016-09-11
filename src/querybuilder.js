@@ -22,7 +22,7 @@ module.exports = type => ({
   }),
 
   /** Gets a resource with a given query. */
-  where: get(type, 0),
+  where: get(type, 1),
 
   /** Gets a resource with a given query (like where), but
       returns an emitter that emits 3 events:

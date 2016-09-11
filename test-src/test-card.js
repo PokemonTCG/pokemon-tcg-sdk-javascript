@@ -10,35 +10,34 @@ const { pipe, prop } = require('ramda')
 describe('card', () => {
   describe('find', () => {
     it('returns card', () => {
-      return card.find(88803).then(pipe(prop('card'), card => {
-        card.should.have.property('name', 'Choice of Damnations')
-        card.should.have.property('manaCost', '{5}{B}')
-        card.should.have.property('cmc', 6)
-        card.should.have.property('type', 'Sorcery — Arcane')
-        card.should.have.deep.property('colors[0]', 'Black')
-        card.should.have.deep.property('types[0]', 'Sorcery')
-        card.should.have.deep.property('subtypes[0]', 'Arcane')
-        card.should.have.property('rarity', 'Rare')
-        card.should.have.property('set', 'SOK')
-        card.should.have.property('text', 'Target opponent chooses a number. You may have that player lose that much life. If you don\'t, that player sacrifices all but that many permanents.')
-        card.should.have.property('flavor', '"Life is a series of choices between bad and worse."\n—Toshiro Umezawa')
-        card.should.have.property('artist', 'Tim Hildebrandt')
-        card.should.have.property('number', '62')
-        card.should.have.property('multiverseid', 88803)
-        card.should.have.property('imageUrl', 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=88803&type=card')
-        card.should.have.property('originalText', 'Target opponent chooses a number. You may have that player lose that much life. If you don\'t, that player sacrifices all but that many permanents.')
-        card.should.have.property('originalType', 'Sorcery — Arcane')
-        card.should.have.property('id', '1c4aab072d52d283e902f2302afa255b39e0794b')
+      return card.find('xy7-57').then(pipe(prop('card'), card => {
+        card.should.have.property('id', 'xy7-57')
+        card.should.have.property('name', 'Giratina-EX')
+        card.should.have.property('nationalPokedexNumber', 487)
+        card.should.have.property('imageUrl', 'https://s3.amazonaws.com/pokemontcg/xy7/57.png')
+        card.should.have.property('subtype', 'EX')
+        card.should.have.property('supertype', 'Pokémon')
+        card.should.have.deep.property('ability.name', 'Renegade Pulse')
+        card.should.have.deep.property('ability.text', "Prevent all effects of attacks, including damage, done to this Pokémon by your opponent's Mega Evolution Pokémon.")
+        card.should.have.property('hp', '170')
+        card.should.have.deep.property('retreatCost[0]', 'Colorless')
+        card.should.have.property('number', '57')
+        card.should.have.property('artist', 'PLANETA')
+        card.should.have.property('rarity', 'Rare Holo EX')
+        card.should.have.property('series', 'XY')
+        card.should.have.property('set', 'Ancient Origins')
+        card.should.have.property('setCode', 'xy7')
+        card.should.have.deep.property('types[0]', 'Dragon')
       }))
     })
   })
 
   describe('where', () => {
     it('should filter', () => {
-      return card.where({ supertypes: 'legendary', subtypes: 'goblin' })
+      return card.where({ set: 'steam siege' })
         .should.eventually.be.an('array')
         .with.deep.property('[0]')
-          .that.has.property('supertypes[0]', 'Legendary')
+          .that.has.property('set', 'Steam Siege')
     })
 
     it('should return 1 page of results', () => {
@@ -53,7 +52,7 @@ describe('card', () => {
     })
 
     it('should be able to control the page size', () => {
-      return card.where({ page: 1, pageSize: 1 })
+      return card.where({ page: 5, pageSize: 1 })
         .should.eventually.be.an('array')
         .that.has.length(1)
     })
@@ -62,11 +61,11 @@ describe('card', () => {
   describe('all', () => {
     it('should emit results from multiple pages', (cb) => {
       const results = []
-      const cardEmitter = card.all({ name: 'Squee', pageSize: 5 })
+      const cardEmitter = card.all({ name: 'Pikachu', pageSize: 5 })
       cardEmitter.on('data', card => results.push(card))
       cardEmitter.on('error', cb)
       cardEmitter.on('end', () => {
-        results.should.have.length(9)
+        results.should.have.length.of.at.least(20)
         cb()
       })
     })

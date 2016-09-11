@@ -1,3 +1,3 @@
 module.exports = {
-  endpoint: 'https://api.magicthegathering.io/v1'
+  endpoint: 'https://api.pokemontcg.io/v1'
 }

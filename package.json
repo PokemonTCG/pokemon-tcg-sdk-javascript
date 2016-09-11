@@ -1,11 +1,11 @@
 {
-  "name": "mtgsdk",
-  "version": "0.1.1",
-  "description": "Magic: The Gathering SDK is a javascript wrapper around the MTG API located at magicthegathering.io",
+  "name": "pokemontcgsdk",
+  "version": "1.0.0",
+  "description": "Pokémon TCG SDK is a javascript wrapper around the Pokémon TCG API located at pokemontcg.io",
   "author": {
-    "name": "Raine Revere",
-    "email": "raineorshine@gmail.com",
-    "url": "https://github.com/metaraine"
+    "name": "Andrew Backes",
+    "email": "backes.andrew@gmail.com",
+    "url": "https://github.com/PokemonTCG/pokemon-tcg-sdk-javascript"
   },
   "main": "./lib/index.js",
   "license": "MIT",
