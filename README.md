@@ -3,7 +3,7 @@
 [![pokemontcg-developers on discord](https://img.shields.io/badge/discord-pokemontcg--developers-738bd7.svg)](https://discord.gg/dpsTCvg)
 [![Build Status](https://travis-ci.org/PokemonTCG/pokemon-tcg-sdk-javascript.svg?branch=master)](https://travis-ci.org/PokemonTCG/pokemon-tcg-sdk-javascript)
 
-This is the Pokémon TCG SDK SDK Javascript implementation. It is a wrapper around the Pokémon TCG SDK API of [pokemontcg.io](http://pokemontcg.io/).
+This is the Pokémon TCG SDK Javascript implementation. It is a wrapper around the Pokémon TCG API of [pokemontcg.io](http://pokemontcg.io/).
 
 ## Installation
 
