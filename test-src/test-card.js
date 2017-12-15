@@ -14,7 +14,7 @@ describe('card', () => {
         card.should.have.property('id', 'xy7-57')
         card.should.have.property('name', 'Giratina-EX')
         card.should.have.property('nationalPokedexNumber', 487)
-        card.should.have.property('imageUrl', 'https://s3.amazonaws.com/pokemontcg/xy7/57.png')
+        card.should.have.property('imageUrl', 'https://images.pokemontcg.io/xy7/57.png')
         card.should.have.property('subtype', 'EX')
         card.should.have.property('supertype', 'Pokémon')
         card.should.have.deep.property('ability.name', 'Renegade Pulse')
