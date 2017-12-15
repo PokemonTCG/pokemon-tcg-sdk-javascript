@@ -11,33 +11,84 @@ describe('card', () => {
   describe('find', () => {
     it('returns card', () => {
       return card.find('xy7-57').then(pipe(prop('card'), card => {
-        card.should.have.property('id', 'xy7-57')
-        card.should.have.property('name', 'Giratina-EX')
-        card.should.have.property('nationalPokedexNumber', 487)
-        card.should.have.property('imageUrl', 'https://images.pokemontcg.io/xy7/57.png')
-        card.should.have.property('subtype', 'EX')
-        card.should.have.property('supertype', 'Pokémon')
-        card.should.have.deep.property('ability.name', 'Renegade Pulse')
-        card.should.have.deep.property('ability.text', "Prevent all effects of attacks, including damage, done to this Pokémon by your opponent's Mega Evolution Pokémon.")
-        card.should.have.property('hp', '170')
-        card.should.have.deep.property('retreatCost[0]', 'Colorless')
-        card.should.have.property('number', '57')
-        card.should.have.property('artist', 'PLANETA')
-        card.should.have.property('rarity', 'Rare Holo EX')
-        card.should.have.property('series', 'XY')
-        card.should.have.property('set', 'Ancient Origins')
-        card.should.have.property('setCode', 'xy7')
-        card.should.have.deep.property('types[0]', 'Dragon')
+        card.should.deep.equal({
+          id: 'xy7-57',
+          name: 'Giratina-EX',
+          nationalPokedexNumber: 487,
+          imageUrl: 'https://images.pokemontcg.io/xy7/57.png',
+          imageUrlHiRes: 'https://images.pokemontcg.io/xy7/57_hires.png',
+          types: ['Dragon'],
+          supertype: 'Pokémon',
+          subtype: 'EX',
+          ability:
+          {
+            name: 'Renegade Pulse',
+            text: 'Prevent all effects of attacks, including damage, done to this Pokémon by your opponent\'s Mega Evolution Pokémon.',
+            type: 'Ability'
+          },
+          hp: '170',
+          retreatCost: ['Colorless', 'Colorless', 'Colorless'],
+          number: '57',
+          artist: 'PLANETA',
+          rarity: 'Rare Holo EX',
+          series: 'XY',
+          set: 'Ancient Origins',
+          setCode: 'xy7',
+          text:
+            ['When a Pokémon-EX has been Knocked Out, your opponent takes 2 Prize cards.'],
+          attacks:
+          [{
+            cost: ['Grass', 'Psychic', 'Colorless', 'Colorless'],
+            name: 'Chaos Wheel',
+            text: 'Your opponent can\'t play any Pokémon Tool, Special Energy, or Stadium cards from his or her hand during his or her next turn.',
+            damage: '100',
+            convertedEnergyCost: 4
+          }],
+          weaknesses: [{ type: 'Fairy', value: '×2' }]
+        })
       }))
     })
   })
 
   describe('where', () => {
     it('should filter', () => {
-      return card.where({ set: 'steam siege' })
+      return card.where({ set: 'ancient origins' })
         .should.eventually.be.an('array')
-        .with.deep.property('[0]')
-          .that.has.property('set', 'Steam Siege')
+        .should.eventually.deep.include({
+          id: 'xy7-57',
+          name: 'Giratina-EX',
+          nationalPokedexNumber: 487,
+          imageUrl: 'https://images.pokemontcg.io/xy7/57.png',
+          imageUrlHiRes: 'https://images.pokemontcg.io/xy7/57_hires.png',
+          types: ['Dragon'],
+          supertype: 'Pokémon',
+          subtype: 'EX',
+          ability:
+          {
+            name: 'Renegade Pulse',
+            text: 'Prevent all effects of attacks, including damage, done to this Pokémon by your opponent\'s Mega Evolution Pokémon.',
+            type: 'Ability'
+          },
+          hp: '170',
+          retreatCost: ['Colorless', 'Colorless', 'Colorless'],
+          number: '57',
+          artist: 'PLANETA',
+          rarity: 'Rare Holo EX',
+          series: 'XY',
+          set: 'Ancient Origins',
+          setCode: 'xy7',
+          text:
+            ['When a Pokémon-EX has been Knocked Out, your opponent takes 2 Prize cards.'],
+          attacks:
+          [{
+            cost: ['Grass', 'Psychic', 'Colorless', 'Colorless'],
+            name: 'Chaos Wheel',
+            text: 'Your opponent can\'t play any Pokémon Tool, Special Energy, or Stadium cards from his or her hand during his or her next turn.',
+            damage: '100',
+            convertedEnergyCost: 4
+          }],
+          weaknesses: [{ type: 'Fairy', value: '×2' }]
+        })
     })
 
     it('should return 1 page of results', () => {

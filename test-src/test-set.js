@@ -11,16 +11,18 @@ describe('set', () => {
   describe('find', () => {
     it('returns set', () => {
       return set.find('base1').then(pipe(prop('set'), set => {
-        set.should.have.property('code', 'base1')
-        set.should.have.property('ptcgoCode', 'BS')
-        set.should.have.property('name', 'Base')
-        set.should.have.property('series', 'Base')
-        set.should.have.property('totalCards', 102)
-        set.should.have.property('standardLegal', false)
-        set.should.have.property('expandedLegal', false)
-        set.should.have.property('releaseDate', '01/09/1999')
-        set.should.have.property('symbolUrl', 'https://images.pokemontcg.io/base1/symbol.png')
-        set.should.have.property('logoUrl', 'https://images.pokemontcg.io/base1/logo.png')
+        set.should.deep.equal({
+          'code': 'base1',
+          'ptcgoCode': 'BS',
+          'name': 'Base',
+          'series': 'Base',
+          'totalCards': 102,
+          'standardLegal': false,
+          'expandedLegal': false,
+          'releaseDate': '01/09/1999',
+          'symbolUrl': 'https://images.pokemontcg.io/base1/symbol.png',
+          'logoUrl': 'https://images.pokemontcg.io/base1/logo.png'
+        })
       }))
     })
   })
@@ -29,8 +31,18 @@ describe('set', () => {
     it('should filter', () => {
       return set.where({ totalCards: 102 })
         .should.eventually.be.an('array')
-        .with.deep.property('[0]')
-          .that.has.property('totalCards', 102)
+        .should.eventually.deep.include({
+          'code': 'base1',
+          'ptcgoCode': 'BS',
+          'name': 'Base',
+          'series': 'Base',
+          'totalCards': 102,
+          'standardLegal': false,
+          'expandedLegal': false,
+          'releaseDate': '01/09/1999',
+          'symbolUrl': 'https://images.pokemontcg.io/base1/symbol.png',
+          'logoUrl': 'https://images.pokemontcg.io/base1/logo.png'
+        })
     })
 
     it('should return 1 page of results', () => {
