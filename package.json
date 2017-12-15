@@ -26,6 +26,7 @@
   "dependencies": {
     "emitter20": "^1.0.0",
     "ramda": "^0.25.0",
+    "request": "^2.83.0",
     "request-promise": "^4.2.2"
   }
 }
