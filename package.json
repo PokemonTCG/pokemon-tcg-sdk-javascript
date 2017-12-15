@@ -1,6 +1,6 @@
 {
   "name": "pokemontcgsdk",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Pokémon TCG SDK is a javascript wrapper around the Pokémon TCG API located at pokemontcg.io",
   "author": {
     "name": "Andrew Backes",
