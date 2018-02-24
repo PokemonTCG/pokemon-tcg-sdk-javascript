@@ -11,32 +11,38 @@ This is the Pokémon TCG SDK Javascript implementation. It is a wrapper around t
 
 ## Usage
 
-    const pokemon = require('pokemontcgsdk')
+```js
+const pokemon = require('pokemontcgsdk')
 
-    pokemon.card.find('base1-4')
-    .then(result => {
-        console.log(result.card.name) // "Charizard"
-    })
+pokemon.card.find('base1-4')
+.then(result => {
+    console.log(result.card.name) // "Charizard"
+})
+```
 
 Query cards by any property:
 
-    card.where({ supertype: 'pokemon', subtype: 'mega' })
-    .then(cards => {
-        console.log(cards[0].name) // "M Sceptile-EX"
-    })
+```js
+card.where({ supertype: 'pokemon', subtype: 'mega' })
+.then(cards => {
+    console.log(cards[0].name) // "M Sceptile-EX"
+})
+```
 
 Retrieve cards across multiple pages of results:
 
-    card.all({ name: 'blastoise', pageSize: 1 })
-    .on('data', card => {
-        console.log(card.name)
-    })
+```js
+card.all({ name: 'blastoise', pageSize: 1 })
+.on('data', card => {
+    console.log(card.name)
+})
 
-    // Will print:
-    // Blastoise
-    // Blastoise-EX
-    // M Blastoise-EX
-    // ....
+// Will print:
+// Blastoise
+// Blastoise-EX
+// M Blastoise-EX
+// ....
+```
 
 ### Properties
 
