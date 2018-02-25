@@ -11,7 +11,7 @@ describe('set', () => {
   describe('find', () => {
     it('returns set', () => {
       return set.find('base1').then(pipe(prop('set'), set => {
-        set.should.deep.equal({
+        set.should.deep.include({
           'code': 'base1',
           'ptcgoCode': 'BS',
           'name': 'Base',
@@ -28,23 +28,6 @@ describe('set', () => {
   })
 
   describe('where', () => {
-    it('should filter', () => {
-      return set.where({ totalCards: 102 })
-        .should.eventually.be.an('array')
-        .should.eventually.deep.include({
-          'code': 'base1',
-          'ptcgoCode': 'BS',
-          'name': 'Base',
-          'series': 'Base',
-          'totalCards': 102,
-          'standardLegal': false,
-          'expandedLegal': false,
-          'releaseDate': '01/09/1999',
-          'symbolUrl': 'https://images.pokemontcg.io/base1/symbol.png',
-          'logoUrl': 'https://images.pokemontcg.io/base1/logo.png'
-        })
-    })
-
     it('should return 1 page of results', () => {
       return Promise.all([
         set.where({})
