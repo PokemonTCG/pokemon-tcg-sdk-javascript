@@ -6,9 +6,9 @@ const Emitter = require('emitter20')
 const get = curryN(3, (type, page, args) => {
   return request({
     uri: `${config.endpoint}/${type}`,
-    qs: merge(args, {
+    qs: merge({
       page
-    }),
+    }, args),
     json: true
   }).then(prop(type))
 })
