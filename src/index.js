@@ -1,6 +1,16 @@
-const qb = require('./querybuilder.js')
+import configuration from './configure';
+import queryBuilder from './queryBuilder';
 
-module.exports = {
-  card: qb('cards'),
-  set: qb('sets')
+const configure = ({apiKey}) => {
+    configuration.apiKey = apiKey;
+};
+
+export default {
+    configure,
+    card: queryBuilder('cards'),
+    set: queryBuilder('sets'),
+    type: queryBuilder('types'),
+    subtype: queryBuilder('subtypes'),
+    rarity: queryBuilder('rarities'),
+    supertype: queryBuilder('supertypes')
 }
